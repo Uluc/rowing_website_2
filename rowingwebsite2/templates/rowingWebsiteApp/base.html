@@ -1,0 +1,228 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>LSU Rowing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/socialMedia.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:200,400,600&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    
+    <link href="https://fonts.googleapis.com/css?family=Teko:600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:200,400&display=swap" rel="stylesheet">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <link rel="shortcut icon" type ="image/png" href="{% static 'Images/favicon.png' %}">
+    
+</head>
+<style>
+    body{
+    
+    background-image: url("https://rowing-bucket.s3.us-east-2.amazonaws.com/static/Images/background.png");
+    }
+</style>
+
+<body>
+
+
+    <nav class="navbar navbar-expand navbar-light bg-light justify-content-center sticky-top nav-down" id="navigation-bar">
+        
+        <div class="d-flex flex-column" id="navigation-change"></div>
+        <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0" id="left-menus">
+            <ul class="navbar-nav ml-auto text-center">
+                <li class="{% if nbar == 'home' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'website-home' %}">Home</a>
+                </li>
+                <li class="{% if nbar == 'roster' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'website-roster' %}">Roster</a>
+                </li>
+                <li class="{% if nbar == 'leadership' %}active{% endif %}">
+                    <a class="nav-link" href="{% url 'website-leadership' %}">Leadership</a>
+                </li>
+                <li class="{% if nbar == 'recruitment' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'website-recruitment' %}">Recruitment</a>
+                    </li>
+            </ul>
+        </div>
+        <div class="d-flex justify-content-around" id="logo-holder">
+                <img class= "vector" src="{% static 'Images/CrestFinaltest.svg' %}" alt="">
+        </div>
+        <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2" id="right-menus"> 
+                <ul class="navbar-nav mr-auto text-center">
+                    <li class="{% if nbar == 'aboutus' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'website-aboutus' %}">About Us</a>
+                    </li>
+                    <li class="{% if nbar == 'schedule' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'website-schedule' %}">Schedule</a>
+                    </li>
+                    <li class="{% if nbar == 'sponsor' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'website-sponsor' %}">Sponsor</a>
+                    </li>
+                    <li class="{% if nbar == 'photos' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'website-photogallery' %}">Photo Gallery</a>
+                    </li>
+                </ul>
+        </div>
+        </div>
+        
+    </nav>
+
+       
+    {% block top %}
+    {% endblock top %}
+
+    {% block contentHome %}
+    {% endblock contentHome %}
+        
+    <div id="main-view" style="background-color:#f0f0f0; position: relative; z-index: 5;" >
+        
+        {% block content %}
+        {% endblock content %}
+        <hr>
+
+    </div>
+
+    
+</body>
+
+
+<footer role="contentinfo">
+    <div class="pb-xl-5 mt-n3" style="background-color:#f0f0f0;">
+    
+        <div class="text-center pt-5 ">
+            <h2>Get in Contact with Us!</h2>
+        </div>
+        
+        <div class="row m-xl-5">
+
+            <div class="text-dark col-md align-self-center">
+                
+                <div class="row mt-n5">
+                    <p class="p-5 pb-n5">We have practice every Monday-Friday from 5:45am - 7:00am, why not join us and see how it
+                    goes! </p>
+                </div>
+
+                <div class="row justify-content-center mx-5 mt-n1">
+                    <iframe class="responsive-iframe" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3440.6503037185644!2d-91.173418!3d30.417662!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8626a6d835c0790b%3A0xba1d8265a4d095cc!2s3355%20Dalrymple%20Dr%2C%20Baton%20Rouge%2C%20LA%2070802!5e0!3m2!1sen!2sus!4v1587460010960!5m2!1sen!2sus" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="padding: p-5;"></iframe>
+                </div>
+
+            </div>
+
+            <div class="col-md m-3">
+                <p class="mb-4">Reach us on Social Media</p>
+                <ul class="social-network social-circle">
+                    <li><a href="https://www.facebook.com/lsurowing/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/lsurowing?lang=en" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/lsu.rowing/?hl=en" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                </ul>
+
+                <p class="mt-4 form-setting">Send us a Message</p>
+                <form action="{% url 'website-home' %}" method="post">
+                {% csrf_token  %}
+                    <div class="row">
+                        
+                        <div class="col-lg-6 m-2">
+                            <input type="text" name="message-name" class="form-control mb-30" 
+                            placeholder="Your Name" required="required" data-error="Name is required.">
+                        </div>
+                        
+                        <div class="col-lg-6 m-2">
+                            <input type="email" name="message-email" class="form-control mb-30" 
+                            placeholder="Your Email" required="required" data-error="Valid email is required.">
+                        </div>
+                        
+                        <div class="col-12 my-4 m-2">
+                            <textarea name="message" class="form-control" placeholder="Insert Message Here" rows="4" required="required" data-error="Please, leave us a message."></textarea>
+                        </div>
+                        
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-success btn-send">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="footer-middle"> 
+        <div class="container"> 
+            <div class="footer-pad text-center">
+                <h4 style="font-size: 20px; font-weight: 450;">Disclaimer</h4>
+                <p style="line-height: 2">"The statements and opinions included in the LSU Rowing Club pages are those of the LSU Rowing Club only. 
+                Any statements and opinions included in these pages are not those of LSU or the LSU Board of Supervisors."<p>
+            </div>
+            <div class="row">
+                <div class="col-md-12 copy">
+                    <p class="text-center">&copy; Copyright 2021 - LSU Rowing.  All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</html>
+
+<script>
+
+    function windowAdjustment() {
+        
+        width = $(window).width(); 
+
+        var leftMenu = document.getElementById("left-menus");
+        var rightMenu = document.getElementById("right-menus");
+        var logoHolder = document.getElementById("logo-holder")
+        var navigationBar = document.getElementById("navigation-change");
+        var navBar = document.getElementById("navigation-bar")
+        
+        if (width <= 820) {
+            navigationBar.appendChild(logoHolder);
+            navigationBar.appendChild(leftMenu);
+            navigationBar.appendChild(rightMenu);
+            
+            
+            
+        }
+        
+        if(width > 820) {
+            navBar.appendChild(leftMenu);
+            navBar.appendChild(logoHolder);
+            navBar.appendChild(rightMenu);
+            
+        }
+    }
+
+    /*$(window).scroll(function() {    
+            // found from
+            // https://stackoverflow.com/questions/12558311/add-remove-class-with-jquery-based-on-vertical-scroll
+            var scrollTop = $(window).scrollTop();
+            if (scrollTop < 200) {
+                maxHeight = 150;
+            } else if (scrollTop > 400) {
+                maxHeight = 75;
+            } else {
+                maxHeight = 150 - 75 * ((scrollTop - 200)) / 200;
+            }
+            $('.vector').css({
+                'max-height': maxHeight + "px"
+            });
+           
+    });*/
+
+    
+
+    $(window).resize(windowAdjustment);
+    $(document).ready(windowAdjustment);
+
+
+</script>

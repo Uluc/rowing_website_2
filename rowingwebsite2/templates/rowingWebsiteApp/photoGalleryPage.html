@@ -1,0 +1,188 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+{% load easy_thumbnails_tags %}
+{% load cropping %}
+
+{% block contentHome %}
+<style>
+
+    .link-gallery a{
+        color: white !important;
+    }
+
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+    }   
+    h1{
+        font-size: 55px;
+        font-family: 'Roboto Slab', serif;
+    }
+
+    h4{
+        font-size: 20px;
+        font-weight: 200;
+        font-family: 'Roboto Slab', serif;
+    }
+    h6{
+        font-size: 12px;
+        font-weight: 200;
+        font-family: 'Roboto Slab', serif;
+    }
+    
+    .center-flow{
+
+        display: flex;
+        justify-content: space-around;
+    }
+    #top-carousel{
+        top:0;
+        bottom: auto;
+    }
+    .carousel-inner > .carousel-item {
+        height: 75vh;
+        max-height: 75vh;
+    }
+
+    .carousel-inner img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: trasnlateY(-50%);
+    -o-transform: trasnlateY(-50%);
+    transform: trasnlateY(-50%);
+}
+
+    a{
+        color: white;
+    }
+
+    @media (max-width: 1100px){
+
+    .carousel-inner > .carousel-item {
+        height: 53vh;
+        max-height: 53vh;
+        }
+    }
+
+    @media (max-width: 800px){
+
+        .carousel-inner > .carousel-item {
+        height: 32vh;
+        max-height: 32vh;
+    }
+        
+        h1{
+            font-size: 3vh;
+        }
+        h4{
+            font-size: 1vh;
+        }
+        h6{
+            font-size: 1vh;
+        }
+        .carousel-caption{
+            margin-top: 0;
+            padding-top: 0;
+        }
+    
+    }
+
+    @media only screen and (max-device-width : 812px){
+        .carousel-inner > .carousel-item {
+        height: 25vh;
+        max-height: 25vh;
+        }
+    }
+
+    @media only screen and (max-device-width : 812px) and (orientation : landscape){
+        .carousel-inner > .carousel-item {
+        height: 50vh;
+        max-height: 50vh;
+        }
+    }
+
+
+
+</style>
+
+<div class="mb-n3" style="background-color:white">
+      
+    {% for pics in gallery %} 
+
+        <div>
+            <div id="carousel{{pics.id}}" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <ul class="carousel-indicators">
+                        {% for picture in pics.images.all %} 
+                            {% if forloop.counter == 1 %}
+                                <li data-target="#carousel{{pics.id}}" data-slide-to="{{forloop.counter0}}" class="active"></li>
+                            {% else %}
+                                <li data-target="#carousel{{pics.id}}" data-slide-to="{{forloop.counter0}}"></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+            
+                    {% for picture in pics.images.all %} 
+                        {% if forloop.counter == 1 %}
+                            <div class="carousel-item active">
+                        {% else %}
+                            <div class="carousel-item">
+                        {% endif %}
+                            <img src="{% thumbnail picture.image 1800x900 crop detail %}" alt="Image" class="d-block w-100 " style="filter: brightness(85%)">
+                           
+                            <div class="carousel-caption" id='top-carousel'>
+                                <div class="d-flex flex-column py-3 px-3 text-center" style="color: white;">
+                                    <h4>{{ pics.date|date:"l, F d, Y" }}</h4>
+                                    <h1 class="mt-n2">{{pics.title}}</h1>
+                                    
+                                    {% if pics.full_gallery_link %}
+                                        <h6 class="link-gallery"><a href="{{pics.full_gallery_link}}">View Full Gallery</a></h6>
+                                    {% else %}
+                                        <h6>Full Gallery Coming Soon</h6>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                            <div class="carousel-caption desc">   
+                                <p class="" style="text-shadow: 2px 2px 8px black;"> {{picture.description}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+                <a class="carousel-control-prev" href="#carousel{{pics.id}}" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel{{pics.id}}" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            
+        </div>
+    
+    {% endfor %}
+
+</div>  
+
+<script>
+
+    function mobileDeviceUpdate(){
+        
+        if(window.matchMedia("(max-width: 767px)").matches){
+            $('#carousel-top-text').removeClass('py-3');
+            $('.carousel-indicators').hide();
+            $('.desc').hide();
+        } 
+    }
+
+    $(document).ready(mobileDeviceUpdate);
+    
+</script>
+
+{% endblock contentHome %}

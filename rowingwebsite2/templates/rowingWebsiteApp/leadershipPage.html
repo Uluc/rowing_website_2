@@ -1,0 +1,116 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+
+{% block content %}
+
+    <style>
+
+        h1{
+            font-size: 55px;
+            font-family: 'Roboto Slab', serif;
+        }
+
+        .block {
+            overflow: hidden;
+        }
+        .block img {
+            max-width: 350px;
+            float: left;
+        }
+
+        h2 {
+            color: #461D7C;
+        }
+        .position-name{
+        }
+        .position-name > h3{
+            font-size: 15px;
+            font-weight: 400;
+        }
+        .position-name > h2{
+            font-size: 19px;
+            font-weight: 400;
+
+        }
+        .player-card{
+
+            font-family: 'Roboto Slab', serif;
+            max-width: 350px;
+        }
+
+        .center-flow{
+
+            display: flex;
+            justify-content: space-around;
+        }
+
+    </style>
+
+
+    <h1 class="text-center pt-5 py-3">
+        Coaching
+    </h1>
+
+    <div class="mx-1 my-2 center-flow flex-wrap" id="coaches">   
+        
+    {% for leader in leadership %}
+        
+        <div class="d-flex flex-column player-card mx-1 block">
+            <div>
+                <img src= "{% thumbnail leader.picture 1000x1000 crop detail %}" class="mb-5" alt="">
+                <div class="position-name">
+                    <h2 class="text-center "> {{ leader.position }}</h2>
+                    <h3 class="text-center"> {{ leader.name }}</h3>
+                </div>
+                <div>
+                <p class="mx-2 mt-3"> {{ leader.writeUp }}</p>
+                </div> 
+            </div>
+            <input type="hidden" value="{{ leader.staff }}"/>
+        </div>
+
+    {% endfor %}
+    </div>
+
+    <hr>
+    <h1 class="text-center pt-5 py-3">
+        Officers
+    </h1>
+
+    <div class="mx-1 my-2 center-flow flex-wrap" id="officers">   
+    </div>
+
+    <script>
+        $(document).ready(function(){
+        
+            var children = document.getElementById('coaches').children;
+
+            var coaches = document.getElementById('coaches');
+            var officers = document.getElementById('officers');
+            
+            officers.innerHTML='';
+            
+            var officersDict =[];
+        
+            for (i = 0; i < children.length ; i++) {
+                const element = children[i];
+                var value = element.getElementsByTagName("input")[0].value;
+                console.log(value);
+
+                if (value === "Officer" ){
+
+                    officersDict.push(element);
+                }
+            }
+
+            for(i = 0; i< officersDict.length; i++){
+                officers.appendChild(officersDict[i]);
+            }
+        });
+    </script>
+
+    
+    
+{% endblock content %}

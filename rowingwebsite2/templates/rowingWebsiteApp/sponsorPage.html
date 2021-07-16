@@ -1,0 +1,123 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+
+
+
+
+{% block top %}
+    
+    {% for banners in banner %}
+        <div class="image-container">
+            <h1 class="titles" >{{banners.sponsor_page_title}}</h1>
+            <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                                                                url('{{banners.sponsor_Banner.url}}'); ">  
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock top%}
+
+{% block content %}
+    
+<style>
+    
+
+    h5{
+        font-size: 20px;
+        font-weight:  200;
+        margin: 20px;
+        font-family: 'Roboto Slab', serif;
+    }
+
+    .img-back{
+        height:70vh;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: scroll;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: brightness(80%);
+        
+    }
+
+    @media only screen and (max-device-width: 767px){
+        .img-back{
+            
+            background-attachment: scroll;
+            
+        }
+
+        h5{
+        font-size: 13px;
+        margin: 10px;
+        
+    }
+    }
+        
+</style>
+
+    {% for sections in sponsorText %}
+        <div class="py-3">
+            <h1 class="text-center">{{sections.title}}</h1>
+        </div>
+
+        <div>
+            <p class="contain-text text-center"> {{sections.text}}
+            </p>        
+        </div>
+    
+        <div class="justify-content-center d-flex flex-row contain-text">    
+
+            <p class=" mt-5 text-center">
+                    If you are interested in sponsoring, donating, or fundraising, please contact our fundraising coordinator
+                    {{sections.sponsorship_coordinator_name}} at <a href="mailto:">{{sections.sponsorship_coordinator_email}}</a>
+            </p>
+        </div>
+
+        <div class="img-back" style="background-image: url('{{sections.image.url}}');"></div>
+        
+        
+    {% endfor %}
+
+   
+
+    
+    <div class="py-5">
+        <h1 class="text-center">Thank You to All of Our Donors </h1>
+    </div>
+
+    <div>
+    
+        <p class="contain-text text-center"> Through out our time many generous donors have helped us keep our 
+            club going. We could like to take time to dearly thank these individuals, in no particular order. 
+        </p>
+
+        <div class="d-flex flex-wrap contain-text justify-content-center">
+            {% for sponsor in sponsors %}
+            <h5>{{sponsor.first_name}} {{sponsor.last_name}}</h5>
+            {% endfor%}
+            
+        </div>
+        
+    </div>
+
+    <script>
+
+        function mobileDeviceUpdate(){
+            
+            if(window.matchMedia("(max-width: 767px)").matches){
+                $('#column-text').removeClass('mx-5');
+            } 
+            else{
+            }
+        }
+
+        $(document).ready(mobileDeviceUpdate);
+        
+    </script>
+
+{% endblock content%}

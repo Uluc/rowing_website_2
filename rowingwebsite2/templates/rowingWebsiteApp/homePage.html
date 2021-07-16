@@ -1,0 +1,191 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+{% load easy_thumbnails_tags %}
+{% load cropping %}
+
+
+{% block top %}
+<script src="https://snapwidget.com/js/snapwidget.js"></script>
+    
+<style>        
+
+    .text-center{
+        line-height: 2.4;
+    }
+    
+    .bg p{
+        font-family: 'Roboto Slab', serif;
+        font-weight: 250;
+        font-size: 20px;
+    }
+
+    
+    @media (max-width: 800px){
+    
+        .bg p{
+            font-size: 2vh;
+        }
+    }
+
+    h1{
+        font-size: 55px;
+        font-family: 'Roboto Slab', serif;
+    }
+    .special{
+        font-size: 70px;
+        font-weight: 600;
+        font-family: 'Roboto Slab', serif;
+        color: white;
+        margin-bottom: 0px;
+    }
+
+    h4{
+        font-size: 20px;
+        font-weight: 200;
+        font-family: 'Roboto Slab', serif;
+    }
+    h6{
+        font-size: 12px;
+        font-weight: 200;
+        font-family: 'Roboto Slab', serif;
+    }
+    
+    .center-flow{
+
+        display: flex;
+        justify-content: space-around;
+    }
+    .contain{
+        background-color: red;
+        flex-flow: flex-start;
+    }
+
+
+
+    @media (max-width: 800px){
+        
+        h1{
+        font-size: 25px;
+        }
+        h4{
+            font-size: 12px;
+        }
+        h6{
+            font-size: 8px;
+        }
+        p{
+            line-height: 1.8;
+        }
+    }
+
+
+</style>
+
+{% for banners in banner %}
+    <div class="image-container">
+        <h1 class="">{{banners.home_page_title}}</h1>
+        <h5 class="d-flex justify-content-center"><a href="{% url 'website-recruitment' %}" style="color: #fff;">Interested in Joining?</a></h5>
+        <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                                                            url('{{banners.home_Banner.url}}'); "> </div>
+    </div>
+{% endfor %}
+
+
+
+{% endblock top %}
+
+{% block contentHome %}
+
+
+<div class=" mb-n4" style="z-index:4">
+    {% for sections in homeText %}
+
+        <div class="">
+
+            <div style="background-color: white;">
+                <h1 class="text-center py-n3" style="color: #461D7C;">{{sections.title}}</h1>
+            </div>
+           
+            
+            <div class="bg my-n2" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ sections.image.url }}'); z-index: 3;">
+                <div class="col-md align-self-center mx-5" style="color: white; z-index: 4;" >
+                    <p class="text-center">{{sections.text}}</p>
+                </div>
+                <div style="color: #461D7C;"></div>
+ 
+            </div>
+        
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+
+
+<script>
+
+    function imageSizing() {
+        
+        width = $(window).width(); 
+        height = $(window).height(); 
+        $('.bg').css({'width':width});
+            
+    }
+
+    function mobileDeviceUpdate(){
+        
+        if(window.matchMedia("(max-width: 767px)").matches){
+            $('.col-md').removeClass('mx-5');
+            $('.bg').css({'height':'70vh'});
+        } 
+    }
+
+$(document).ready(mobileDeviceUpdate);
+$(window).resize(imageSizing);
+$(document).ready(imageSizing);
+</script>
+
+    
+{% endblock contentHome %}
+
+{%block content%}
+<h1 class="text-center mt-4"> Keep Up With Us</h1>
+
+<div class="d-flex justify-content-center row" id="social-media-section"> 
+    <div class="d-flex justify-content-center flex-column my-2">
+        <ul class="social-network social-circle d-flex justify-content-center">
+            <p>Facebook</p>
+            <li><a href="https://www.facebook.com/lsurowing/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+        </ul>
+        <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Flsurowing%2F&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="500" 
+        style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media" class="mx-3"></iframe>
+    
+    </div>
+        <!-- SnapWidget -->
+    <!-- SnapWidget -->
+    <div class="d-flex justify-content-center flex-column my-2">
+        <ul class="social-network social-circle d-flex justify-content-center">
+            <p>Instagram</p>
+            <li><a href="https://www.instagram.com/lsu.rowing/?hl=en" class="icoInstagram " title="Instagram"><i class="fa fa-instagram"></i></a></li>
+        </ul>
+        <iframe src="https://snapwidget.com/embed/839105" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:350px; height:500px"></iframe>
+    </div>
+    
+    <div class="d-flex justify-content-center flex-column my-2">
+        <ul class="social-network social-circle d-flex justify-content-center align-items-center">
+            <p>Twitter</p>
+            <li><a href="https://twitter.com/lsurowing?lang=en" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+        <div class="mx-3"><a style="width:350px;"class="twitter-timeline" data-width="400" data-height="500" href="https://twitter.com/LSUrowing?ref_src=twsrc%5Etfw">Tweets by LSUrowing</a> </div>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+</div>
+
+
+
+{% endblock content %}

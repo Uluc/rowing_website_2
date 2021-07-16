@@ -1,0 +1,153 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+
+
+{% block top %}
+
+    {% for banners in banner %}
+        <div class="image-container">
+            <h1 class="titles">{{banners.schedule_page_title}}</h1>
+            <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                                                                url('{{banners.schedule_Banner.url}}'); "> </div>
+        </div>
+    {% endfor %}
+
+{% endblock top %}
+
+{% block content %}
+
+    <head>
+        <link rel="stylesheet" href="{% static 'css/schedulePage.css' %}">
+    </head>
+
+    <div class="flex-column">
+        
+        <div class="header">
+            <h1 class="text-center py-3">
+                Fall Schedule
+            </h1>
+        </div>
+
+        <div id="fall-races">
+            
+            {% for race in races %}
+                {% if race.public %}
+                <div class="regatta-card my-2 mx-2 ">
+                
+                    {% if race.date %}
+                        <h2 class="center-text py-1">{{race.date|date:"l, F d, Y"}}</h2>
+                    {% else %}
+                        <h2 class="center-text py-1">To Be Announced</h2>
+                    {% endif %}
+                        <h1 class="text-center my-1">{{race.name}}</h1>
+
+                    <h3 class="text-center m-1 my-2">{{race.location}}</h3>
+                    
+                    {% if race.results %}
+                        <h6 class="text-center" ><a href="#!" class="inactiveLink" id="anchor{{race.id}}">Recap</a></h6>
+                    {% endif %}
+                    
+
+                    <div id="results{{race.id}}" class="my-3 mx-3" style="display: none;">
+                        <hr>
+                        <h5 class="text-center">
+                            {{race.results|linebreaks }}
+                        </h5>
+                    </div>
+
+                    <input type="hidden" value={{ race.semester }}>
+
+                </div>
+                     
+                {% endif %}
+            {% endfor %}  
+ 
+        </div>
+       
+        <div id=toBeAnnouncedSoonFall>
+            <h2 class="text-center py-5">Our schedule is not currently set for the fall semester please visit at a later date.</h2>
+        </div>
+
+        <div class="header ">
+            <h1 class="text-center py-3">
+                Spring Schedule
+            </h1>
+        </div>
+        <div id="spring-races">
+
+        </div>
+        <div id=toBeAnnouncedSoonSpring>
+            <h2 class="text-center py-5">Our schedule is not currently set for the spring semester please visit at a later date.</h2>
+        </div>
+       
+        
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
+   <script>
+        $(document).ready(function(){
+            
+            var children = document.getElementById('fall-races').children;
+
+            var fall = document.getElementById('fall-races');
+            var spring = document.getElementById('spring-races');
+            var notReady = document.getElementById('toBeAnnouncedSoon');
+            
+            spring.innerHTML='';
+            //fall.innerHTML='';
+            var racesDictSpring =[];
+            var fallRace = false;
+            
+            for (i = 0; i < children.length ; i++) {
+                const element = children[i];
+                var value = element.getElementsByTagName("input")[0].value;
+
+                if (value === "Spring" ){
+
+                    racesDictSpring.push(element);
+                }
+                if (value === "Fall" ){
+
+                    fallRace = true;
+                }
+                
+            }
+
+            for(i = 0; i< racesDictSpring.length; i++){
+                spring.appendChild(racesDictSpring[i]);
+            }
+           
+
+            if (!fallRace) {
+                $('#toBeAnnouncedSoonFall').show();  
+            }
+            else{
+                $('#toBeAnnouncedSoonFall').hide();  
+            }
+            
+            if (spring.innerHTML === '') {
+                $('#toBeAnnouncedSoonSpring').show();  
+            }
+            else{
+                $('#toBeAnnouncedSoonSpring').hide();  
+            }
+            
+
+            $('a').click(function() { 
+                var id = $(this).attr('id');
+                console.log(id);
+                newid = "results" + id.substr(6);
+                console.log(newid);
+
+                $('#'+ newid +'').slideToggle(500);
+            });
+
+
+        }); 
+
+    </script>
+
+        
+{% endblock content %}

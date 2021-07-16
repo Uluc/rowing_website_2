@@ -1,0 +1,262 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+{% load easy_thumbnails_tags %}
+{% load cropping %}
+
+
+{% block content%}
+    
+    <style>
+
+        .block {
+            overflow: hidden;
+            width: 26vw;
+        }
+        .block img {
+            width: 26vw;
+            float: left;
+        }
+        .header > h1{
+            font-family: 'Open Sans', sans-serif;
+            background-color: #461D7C;
+            color: #FDD023;
+            font-size: 50px;
+            font-family: 'Teko', sans-serif;
+        }
+        h3 h4 { 
+            color:mintcream;
+            font-family: 'Roboto Slab', serif;
+        }
+        h2 {
+            color: #461D7C;
+            font-size: 20px;
+            font-family: 'Roboto Slab', serif;
+            font-weight: 400;
+        }
+        h5{
+            font-size: 14px;
+        }
+        .name{
+            background: white; 
+        }
+
+        .player-card{
+            border-style:solid;
+            border-width: 1px;
+            border-color: gray;
+        }
+        .text-set{
+            font-weight: 700;
+            font-family: 'Roboto Slab', serif;
+            margin-right: 5px;
+        }
+        .text-values{
+            font-weight: 200;
+            font-family: 'Roboto Slab', serif;
+        }
+        .center-flow{
+            display: flex;
+            justify-content: space-around;
+        }
+        .max-expand{
+            max-width: 26vw;
+        }
+
+        @media  (max-width: 1000px){
+            
+            .block {
+            overflow: hidden;
+            width: 38vw;
+
+            }
+            .block img {
+                width: 38vw;
+                float: left;
+            }
+
+            .max-expand{
+            max-width: 35vw;
+            }
+
+        }
+
+        @media  (max-width: 700px){
+            
+            .block {
+                overflow: hidden;
+                width: 70vw;
+
+            }
+            .block img {
+                width: 70vw;
+                float: left;
+            }
+
+            .max-expand{
+                max-width: 70vw;
+            }
+
+        }
+
+        @media only screen and (max-device-width: 767px){
+            .block {
+                overflow: hidden;
+                width: 90vw;
+
+            }
+            .block img {
+                width: 90vw;
+                float: left;
+            }
+
+            .max-expand{
+                max-width: 90vw;
+            }
+
+        }
+
+        @media only screen and (max-device-width: 767px) and (orientation:landscape){
+            .block {
+                overflow: hidden;
+                width: 40vw;
+
+            }
+            .block img {
+                width: 40vw;
+                float: left;
+            }
+
+            .max-expand{
+                max-width: 40vw;
+            }
+
+        }
+
+    
+    </style>
+        
+    <div class="header">
+        <h1 class="text-center py-3">
+            Men's Varsity
+        </h1>
+    </div>
+
+    <div class="mx-lg-4 my-2 center-flow flex-wrap" id=mens-varsity-roster>
+        {% for rower in rower %}
+        <div> 
+            <div class="d-flex flex-column player-card block my-1" id="rower-card" >
+                <img src= "{% thumbnail rower.picture 375x550 box=rower.cropping crop detail %}" alt="">
+                <div>
+                    <div class ="py-2 name">
+                        <h2 class="text-center mt-2"> {{ rower.first_name }} {{ rower.last_name }}</h2>
+                        <h5 class="text-center text-values"> {{ rower.year }}</h5>
+                    </div>
+                    <div class="py-1 d-flex flex-row max-expand">
+                        <div class="py-1 ml-3 mr-2">
+                            <h5 class="text-set"> Orientation: </h5> 
+                            <h5 class="text-set"> Hometown: </h5>    
+                            <h5 class="text-set"> Major: </h5>
+                        </div>
+                        <div class="py-1 max-expand" style="height: 80px">   
+                            <h5 class="text-values"> {{ rower.orientation }} </h5>                       
+                            <h5 class="text-values"> {{ rower.hometown }} </h5>     
+                            <div style="max-width: 220px;">           
+                                <h5 class="text-values"> {{ rower.major }} </h5>    
+                            </div>               
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" value="{{ rower.crew }}"/>
+                <input type="hidden" value="{{ rower.varsity }}"/>   
+            </div>  
+
+        </div>   
+                
+        {% endfor %}
+    </div>
+               
+    <div class="header">
+        <h1 class="text-center py-3">
+            Women's Varsity
+        </h1>
+    </div>
+
+    <div class="mx-lg-4 my-2 center-flow flex-wrap" id=womens-varsity-roster>  
+    </div>
+
+    <div class="header">
+        <h1 class="text-center py-3">
+            Men's Novice
+        </h1>
+    </div>
+
+    <div class="mx-lg-4 my-2 center-flow flex-wrap" id=mens-novice-roster>
+    </div>
+
+    <div class="header">
+        <h1 class="text-center py-3">
+            Women's Novice
+        </h1>
+    </div>
+
+    <div class="mx-lg-4 my-2 center-flow flex-wrap" id=womens-novice-roster>
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+
+            var mensNovice = document.getElementById('mens-novice-roster');
+            var womensVarsity = document.getElementById('womens-varsity-roster');
+            var womensNovice = document.getElementById('womens-novice-roster');
+            var children = document.getElementById('mens-varsity-roster').children;
+            mensNovice.innerHTML = '';
+            womensVarsity.innerHTML='';
+            womensNovice.innerHTML='';
+
+            var dictWomensVar =[];
+            var dictWomensNov =[];
+            var dictMensNov =[];
+            
+            for (i = 0; i < children.length ; i++) {
+                const element = children[i];
+                var value1 = element.getElementsByTagName("input")[0].value;
+                var value2 = element.getElementsByTagName("input")[1].value;
+                console.log(value1);
+                console.log(i);
+                
+                if (value1 === "Womens" ){
+                    if(value2 === "Yes" ){
+                        dictWomensVar.push(element);
+                    }
+                    else{
+                        dictWomensNov.push(element);   
+                    }
+                }
+                else{
+                    if(value2 === "No" ){
+                        dictMensNov.push(element);
+                    }
+                }
+                
+            }
+
+            for(i = 0; i< dictWomensVar.length; i++){
+                womensVarsity.appendChild(dictWomensVar[i]);
+            }
+            for(i = 0; i< dictWomensNov.length; i++){
+                womensNovice.appendChild(dictWomensNov[i]);
+            }
+            for(i = 0; i< dictMensNov.length; i++){
+                mensNovice.appendChild(dictMensNov[i]);
+            }
+                   
+        });
+        
+        function imageSizing() {  
+            console.log($(window).width())
+  
+        }
+        $(window).resize(imageSizing);
+    </script>
+
+{% endblock content %}

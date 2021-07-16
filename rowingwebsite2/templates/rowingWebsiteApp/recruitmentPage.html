@@ -1,0 +1,130 @@
+{% extends "rowingWebsiteApp/base.html" %}
+{% load static %}
+
+{% block top %}
+
+
+    {% for banners in banner %}
+        <div class="image-container">
+            <h1 class="titles">{{banners.recruitment_page_title}}</h1>
+            <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                                                                url('{{banners.recruitment_Banner.url}}'); "> </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/schedulePage.css' %}">
+</head>
+
+<style>    
+
+.parallax{
+            background-attachment: fixed;
+            background-size: cover;
+            height: 100vh
+        }
+    .center-text{
+        color: #FDD023 !important; 
+        background-color: #461D7C;
+    }
+
+    .img-back{
+            height:70vh;
+            width: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: brightness(80%);
+
+            
+        }
+
+    @media only screen and (max-device-width: 767px){
+        .img-back{
+            
+            background-attachment: scroll;
+            
+        }
+    }
+
+    
+</style>
+
+<div>
+
+    
+
+    <div class="py-5" id="view-text" style="position: relative; z-index:99;">
+        {% for sections in recruitmentText %}
+       
+            <h1 class="text-center">{{sections.title}}</h1>
+            
+            <p class="contain-text text-center"> {{sections.text}}</p>
+
+            <p class="contain-text text-center"> If interested fill out our <a href="{{sections.questionaire_link}}">questionaire</a> link and we will get back to you. </p>
+            
+        {% endfor %}
+
+        <p class="contain-text text-center"> We host a variety of events to see if rowing is the sport for you. Take a look to see if you
+                are interested in attending any of them.
+        </p>
+        
+        <div id="recruitment">
+            
+            {% for event in events %}
+                {% if event.public %}
+                    <div class="regatta-card my-4 mx-2 ">
+                        {% if event.date %}
+                            <h2 class="center-text py-1">{{  event.date|date:"l, F d, Y" }}</h2>
+                        {% else %}
+                            <h2 class="center-text py-1">To Be Announced</h2>
+                        {% endif %}
+                            <h1 class="text-center my-1">{{ event.event }}</h1>
+                            <h3 class="text-center mb-2">{{ event.location }}</h3>
+                            <h6 class="text-center">{{ event.time }}</h6>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        </div>
+
+        {% for sections in recruitmentText %}
+            <div class="img-back" style="background-image: url('{{sections.image.url}}');"></div>
+        {% endfor %}
+        
+    </div>
+
+
+    <div class="py-2">
+        <h1 class="text-center">Can't Make To Our Events?</h1>
+
+        <p class="contain-text text-center"> We have practice from 5:45am to 7am Monday through Friday. 
+            Why not come out?</p>
+    </div>
+</div>
+
+<script>
+
+    function mobileDeviceUpdate(){
+        
+        if(window.matchMedia("(max-width: 767px)").matches){
+            $('#column-text').removeClass('mx-5');
+        } 
+        else{
+        }
+    }
+
+    $(document).ready(mobileDeviceUpdate);
+
+    
+</script>
+
+{% endblock content%}
