@@ -28,7 +28,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#3nle5#8elm08$i3^2n7ldr#0yadpyx0g!!5o%8z1jnfc#q=(u'
+SECRET_KEY = config["DJANGO_SECRET_KEY_ROWING"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
