@@ -53,7 +53,7 @@ class Rower(models.Model):
     orientation = models.CharField(max_length=64, choices=ORIENTATION)
     hometown = models.CharField(max_length=64, help_text=("Example: Baton Rouge, LA"))
     major = models.CharField(max_length=64)
-    picture = models.ImageField(upload_to = '')
+    picture = models.ImageField(upload_to = 'rowers')
     cropping = ImageRatioField('picture', '5x7')
     crew = models.CharField(max_length=64, choices=CREWS)
     varsity = models.CharField(max_length=64, choices=VARSITY)
