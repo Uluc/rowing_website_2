@@ -1,1 +1,1 @@
-web:gunicorn rowingwebsite2.wsgi
+web: gunicorn rowingwebsite2.wsgi
