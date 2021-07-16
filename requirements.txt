@@ -33,3 +33,4 @@ six==1.16.0
 sqlparse==0.4.1
 Unidecode==0.4.21
 urllib3==1.26.6
+gunicorn
