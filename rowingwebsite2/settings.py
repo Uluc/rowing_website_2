@@ -156,7 +156,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
 AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
-AWS_S3_CUSTOM_DOMAIN = os.environ["CLOUDFLARE_DOMAIN"]
+AWS_S3_CUSTOM_DOMAIN = os.environ["CLOUDFRONT_DOMAIN"]
 AWS_DEFAULT_ACL='public-read'
 
 AWS_S3_OBJECT_PARAMETERS = {
@@ -173,7 +173,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+STATIC_URL = os.environ["CLOUDFRONT_DOMAIN"]
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'rowingwebsite2.storages_backend.MediaStorage'
 THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
