@@ -38,12 +38,16 @@ class MyModelAdminSorting(SortableAdminMixin, admin.ModelAdmin):
     list_display = ['name', 'position', 'staff']
 
 class FancyAdmin(admin.ModelAdmin):
-    list_display = ['description', 'asociated_event', 'image_display']
-    image_display = AdminThumbnail(image_field='image_thumbnail')
-    image_display.short_description = 'Image'
+    list_display = ['description', 'asociated_event', 'thumbnail']
+    # image_display = AdminThumbnail(image_field='image_thumbnail')
+    # image_display.short_description = 'Image'
 
-    # set this to also show the image in the change view
-    readonly_fields = ['image_display']
+    def thumbnail(self, obj):
+        return format_html('<img src="{}" style="width: 130px; \
+                           height: 100px"/>'.format(obj.image))
+
+    thumbnail.short_description = 'thumbnail'
+
     list_per_page = 15
 
 

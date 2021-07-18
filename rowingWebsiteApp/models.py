@@ -146,7 +146,7 @@ class Picture(models.Model):
     ("Describe your images so they can easily be identified to be added into appropriate gallery "))
     
     image = models.ImageField(upload_to='images')
-    image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(125, 125)], format='JPEG', options={'quality': 60})
+    #image_thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(125, 125)], format='JPEG', options={'quality': 60})
 
     def __str__(self):
         return self.asociated_event + " - " + self.description
