@@ -44,7 +44,7 @@ class FancyAdmin(admin.ModelAdmin):
 
     def thumbnail(self, obj):
         return format_html('<img src="{}" style="width: 130px; \
-                           height: 100px"/>'.format(obj.image))
+                           height: 100px"/>'.format(obj.image.url))
 
     thumbnail.short_description = 'thumbnail'
 
