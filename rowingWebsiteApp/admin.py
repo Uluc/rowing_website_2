@@ -66,7 +66,7 @@ class BannerAdmin(admin.ModelAdmin):
 
     def about_display(self, obj):
         return format_html('<img src="{}" style="width: 130px; \
-                           height: 100px"/>'.format(obj.about_Bannerimage.url))
+                           height: 100px"/>'.format(obj.about_Banner.url))
 
     def schedule_display(self, obj):
         return format_html('<img src="{}" style="width: 130px; \
