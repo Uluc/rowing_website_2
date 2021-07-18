@@ -39,8 +39,6 @@ class MyModelAdminSorting(SortableAdminMixin, admin.ModelAdmin):
 
 class FancyAdmin(admin.ModelAdmin):
     list_display = ['description', 'asociated_event', 'thumbnail']
-    # image_display = AdminThumbnail(image_field='image_thumbnail')
-    # image_display.short_description = 'Image'
 
     def thumbnail(self, obj):
         return format_html('<img src="{}" style="width: 130px; \
@@ -61,18 +59,26 @@ class SponsorAdmin(admin.ModelAdmin):
 class BannerAdmin(admin.ModelAdmin):
     
     list_display = ['title','recruitment_display' , 'about_display', 'schedule_display', 'sponsor_display']
-    
 
-    recruitment_display = AdminThumbnail(image_field='image_thumbnail_recruitment')
+    def recruitment_display(self, obj):
+        return format_html('<img src="{}" style="width: 130px; \
+                           height: 100px"/>'.format(obj.recruitment_Banner.url))
+
+    def about_display(self, obj):
+        return format_html('<img src="{}" style="width: 130px; \
+                           height: 100px"/>'.format(obj.about_Bannerimage.url))
+
+    def schedule_display(self, obj):
+        return format_html('<img src="{}" style="width: 130px; \
+                           height: 100px"/>'.format(obj.schedule_Banner.url))     
+
+    def sponsor_display(self, obj):
+        return format_html('<img src="{}" style="width: 130px; \
+                           height: 100px"/>'.format(obj.sponsor.url))
+
     recruitment_display.short_description = 'Recruitment Page Banner'
-    
-    about_display = AdminThumbnail(image_field='image_thumbnail_about')
     about_display.short_description = 'About Page Banner'
-    
-    schedule_display = AdminThumbnail(image_field='image_thumbnail_schedule')
     schedule_display.short_description = 'Schedule Page Banner'
-
-    sponsor_display = AdminThumbnail(image_field='image_thumbnail_sponsor')
     sponsor_display.short_description = 'Sponsor Page Banner'
 
     # def has_delete_permission(self, request, obj=None):

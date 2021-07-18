@@ -250,23 +250,23 @@ class PageBanners(models.Model):
 
     home_page_title = models.CharField(max_length=50, default="Welcome To LSU Rowing")
     home_Banner = models.ImageField(upload_to='banners', default='')
-    image_thumbnail_home = ImageSpecField(source='home_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
+    # image_thumbnail_home = ImageSpecField(source='home_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
     
     recruitment_page_title = models.CharField(max_length=50)
     recruitment_Banner = models.ImageField(upload_to='banners')
-    image_thumbnail_recruitment = ImageSpecField(source='recruitment_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
+    # image_thumbnail_recruitment = ImageSpecField(source='recruitment_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
     
     about_page_title = models.CharField(max_length=50)
     about_Banner = models.ImageField(upload_to='banners')
-    image_thumbnail_about = ImageSpecField(source='about_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
+    # image_thumbnail_about = ImageSpecField(source='about_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
     
     schedule_page_title = models.CharField(max_length=50)
     schedule_Banner = models.ImageField(upload_to='banners')
-    image_thumbnail_schedule = ImageSpecField(source='schedule_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
+    # image_thumbnail_schedule = ImageSpecField(source='schedule_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
    
     sponsor_page_title = models.CharField(max_length=50)
     sponsor_Banner = models.ImageField(upload_to='banners')
-    image_thumbnail_sponsor = ImageSpecField(source='sponsor_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
+    # image_thumbnail_sponsor = ImageSpecField(source='sponsor_Banner', processors=[ResizeToFill(300, 200)], format='JPEG', options={'quality': 60})
 
     def __str__(self):
         return "Website Banners"
