@@ -27,7 +27,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config["DJANGO_SECRET_KEY_ROWING"]
+SECRET_KEY = os.environ["DJANGO_SECRET_KEY_ROWING"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -153,10 +153,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AWS_ACCESS_KEY_ID = config["AWS_ACCESS_KEY_ID"]
-AWS_SECRET_ACCESS_KEY = config["AWS_SECRET_ACCESS_KEY"]
-AWS_STORAGE_BUCKET_NAME = config["AWS_STORAGE_BUCKET_NAME"]
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % config["AWS_STORAGE_BUCKET_NAME"]
+AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
+AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
+AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % os.environ["AWS_STORAGE_BUCKET_NAME"]
 AWS_DEFAULT_ACL='public-read'
 
 AWS_S3_OBJECT_PARAMETERS = {
