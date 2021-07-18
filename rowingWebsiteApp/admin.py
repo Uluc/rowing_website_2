@@ -74,7 +74,7 @@ class BannerAdmin(admin.ModelAdmin):
 
     def sponsor_display(self, obj):
         return format_html('<img src="{}" style="width: 130px; \
-                           height: 100px"/>'.format(obj.sponsor.url))
+                           height: 100px"/>'.format(obj.sponsor_Banner.url))
 
     recruitment_display.short_description = 'Recruitment Page Banner'
     about_display.short_description = 'About Page Banner'
