@@ -36,3 +36,4 @@ sqlparse==0.4.1
 typing-extensions==3.10.0.0
 Unidecode==0.4.21
 urllib3==1.26.6
+psycopg2
