@@ -156,8 +156,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AWS_ACCESS_KEY_ID = os.environ["AWS_ACCESS_KEY_ID"]
 AWS_SECRET_ACCESS_KEY = os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
-# AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % os.environ["AWS_STORAGE_BUCKET_NAME"]
-AWS_S3_CUSTOM_DOMAIN = "https://d19tolcfs26uy5.cloudfront.net"
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % os.environ["AWS_STORAGE_BUCKET_NAME"]
+AWS_S3_CDN_DOMAIN = "https://d19tolcfs26uy5.cloudfront.net"
 AWS_DEFAULT_ACL='public-read'
 AWS_S3_SECURE_URLS=True
 
