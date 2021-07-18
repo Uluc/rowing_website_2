@@ -159,6 +159,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ["AWS_STORAGE_BUCKET_NAME"]
 # AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % os.environ["AWS_STORAGE_BUCKET_NAME"]
 AWS_S3_CUSTOM_DOMAIN = os.environ["CLOUDFLARE_DOMAIN"]
 AWS_DEFAULT_ACL='public-read'
+AWS_S3_SECURE_URLS=True
 
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
