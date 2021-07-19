@@ -1,0 +1,65 @@
+.header > h1{
+    color: #FDD023;
+    font-size: 55px;
+    background-color: #461D7C;
+    font-family: 'Teko', sans-serif;
+}
+.regatta-card{
+    border-style:solid;
+    border-width: 1px;
+    border-color: gray;
+    height: auto;
+    background: white
+    
+}
+.center-text{
+    background: white;
+    border-style: solid;
+    border-width: 0px;
+    border-bottom-width: 2px;
+    border-color: #461D7C;
+    align-content: center;
+    text-align: center;
+    align-self: center;
+}
+
+.regatta-card > h1{
+    font-size: 40px;
+    
+    font-weight: 400;
+    font-family: 'Roboto Slab', serif;
+    
+}
+.regatta-card > h2{
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Roboto Slab', serif;
+    color: #461D7C;
+    
+}
+
+h5, h6{
+    font-weight: 230;
+    font-family: 'Roboto Slab', serif;
+} 
+
+.regatta-card > h3{
+    font-weight: 230;
+    font-family: 'Roboto Slab', serif;
+    color: #461D7C;
+}
+
+@media (max-width: 800px){
+    .regatta-card > h1{
+        font-size: 22px;
+    }
+    .regatta-card >h2{
+        font-size: 13px;
+    }
+    .regatta-card > h3{
+        font-size: 10px;
+    }
+    h5, h6{
+        font-size: 10px;
+    }
+}
