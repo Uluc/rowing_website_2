@@ -85,8 +85,10 @@
     <div class="image-container">
         <h1 class="">{{banners.home_page_title}}</h1>
         <h5 class="d-flex justify-content-center"><a href="{% url 'website-recruitment' %}" style="color: #fff;">Interested in Joining?</a></h5>
-        <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                                                            url('{{banners.home_Banner.url}}'); "> </div>
+        
+         <div class="bg"> 
+            <img src="{% thumbnail banners.home_Banner 1800x900 crop detail %}" alt="Image" class="d-block w-100 " style="filter: brightness(85%)">                                               
+        </div>
     </div>
 {% endfor %}
 
