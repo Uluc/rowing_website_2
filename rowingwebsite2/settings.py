@@ -30,7 +30,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = os.environ["DJANGO_SECRET_KEY_ROWING"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ["DEBUG"]
 
 ALLOWED_HOSTS = ['https://rowing-website-lsu.herokuapp.com/', '*']
 
