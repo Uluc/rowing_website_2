@@ -87,7 +87,7 @@
         <h5 class="d-flex justify-content-center"><a href="{% url 'website-recruitment' %}" style="color: #fff;">Interested in Joining?</a></h5>
         
          <div class="bg"> 
-            <img src="{% thumbnail banners.home_Banner 1800x900 crop detail %}" alt="Image" class="d-block w-100 " style="filter: brightness(85%)">                                               
+            <img src="{% thumbnail banners.home_Banner 1800x900 crop detail %}" alt="Image" class="d-block w-100 bg " style="filter: brightness(75%)">                                               
         </div>
     </div>
 {% endfor %}
@@ -108,8 +108,7 @@
                 <h1 class="text-center py-n3" style="color: #461D7C;">{{sections.title}}</h1>
             </div>
            
-            
-            <div class="bg my-n2" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ sections.image.url }}'); z-index: 3;">
+            <div class="bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ sections.image.url }}'); z-index: 3;">
                 <div class="col-md align-self-center mx-5" style="color: white; z-index: 4;" >
                     <p class="text-center">{{sections.text}}</p>
                 </div>
