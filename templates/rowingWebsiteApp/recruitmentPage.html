@@ -7,8 +7,10 @@
     {% for banners in banner %}
         <div class="image-container">
             <h1 class="titles">{{banners.recruitment_page_title}}</h1>
-            <div class="bg" style= "background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                                                                url('{{banners.recruitment_Banner.url}}'); "> </div>
+
+            <div class="bg"> 
+                <img src="{% thumbnail banners.recruitment_Banner 1800x900 crop detail %}" alt="Image" class="d-block w-100 bg " style="filter: brightness(75%)">                                               
+            </div>
         </div>
     {% endfor %}
 
